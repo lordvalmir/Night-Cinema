@@ -11,7 +11,7 @@
 .container {
   display: grid;
   grid-template-columns: 40px auto 40px;
-  grid-template-rows: 10% auto 10%;
+  grid-template-rows: 80px auto 80px;
   color: white;
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Film.css';
+import './myapp.js';
 
 class Film extends React.Component {
   constructor(props) {
@@ -30,12 +31,18 @@ class Film extends React.Component {
       })
       .catch(console.log);
 
+	  	// Install built-in polyfills to patch browser incompatibilities.
+
   }
 
 	render(){
 	  return(
 
 	  	<div className="box">
+	  		<script src="../../node_modules/mux.js/dist/mux.js"></script>
+		    <script src="../../dist/shaka-player.compiled.js"></script>
+		    <script src="myapp.js"></script>
+
 	  	  <div className="stars">	</div>
         <div className="twinkling">	</div>
 		    <div className="container">
@@ -70,7 +77,10 @@ class Film extends React.Component {
 					    		<button className="watch" type="button">play</button>
 					    	</div>
 					    </div>
+
 					    <div className="picture">
+					    	<script src="myapp.js"></script>
+					    	<video id="video" width="640" poster="//shaka-player-demo.appspot.com/assets/poster.jpg" controls autoPlay></video>	
 						    {
 						    	this.state.loaded 
 						    	? 

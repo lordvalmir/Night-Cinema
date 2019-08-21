@@ -77,7 +77,7 @@ class Home extends React.Component {
         this.setState ({ documentary_image: this.state.documentary.results.map(image =>
           {
             if(image.poster_path !== null) {
-              return ("http://image.tmdb.org/t/p/w342" +  image.poster_path) 
+              return ("https://image.tmdb.org/t/p/w342" +  image.poster_path) 
             } else {
               return ("missing.jpg")
             }
@@ -94,7 +94,7 @@ class Home extends React.Component {
         { 
           images.map((value, index) => {
             if(value !== "missing.jpg") {
-              return <Link to={`/Film/${informations.results[index].id}`}>
+              return <Link to={`/Film/${informations.results[index].id.toString()}` }>
                        <img className="img-contend" 
                            src={value} 
                            key={informations.results[index].id} 

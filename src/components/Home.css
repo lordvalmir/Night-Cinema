@@ -1,7 +1,7 @@
 .Container {
   display: grid;
   grid-template-columns: 40px auto 40px;
-  grid-template-rows: 5% 5% auto 5%;
+  grid-template-rows: 40px 60px auto 40px;
   color: white;
 }
 
@@ -89,11 +89,11 @@ img {
   grid-row-end: 4;
 }
 .stars {
-  background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+  background:#000 url(https://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
   z-index:0;
 }
 .twinkling{
-  background:transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+  background:transparent url(https://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
   z-index:1;
   -moz-animation:move-twink-back 200s linear infinite;
   -ms-animation:move-twink-back 200s linear infinite;
