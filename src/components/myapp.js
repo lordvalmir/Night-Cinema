@@ -2,7 +2,7 @@ import shaka from 'shaka-player'
 
 // myapp.js
 
-var manifestUri = 'http://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';
+var manifestUri = 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';
 
 function initApp() {
   // Install built-in polyfills to patch browser incompatibilities.
