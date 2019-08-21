@@ -23,7 +23,7 @@ class Film extends React.Component {
       .then(res => res.json())
       .then(json => {
         this.setState ({ film_info: json });
-        this.setState ({ film_image: "http://image.tmdb.org/t/p/w342" + json.poster_path });
+        this.setState ({ film_image: "https://image.tmdb.org/t/p/w342" + json.poster_path });
         this.setState ({ film_title: json.title });
         this.setState ({ film_description: json.overview });
         this.setState ({ film_metadata: json });
