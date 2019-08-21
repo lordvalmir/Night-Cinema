@@ -23,7 +23,7 @@ class Home extends React.Component {
         this.setState ({ popular_movies_image: this.state.popular_movies.results.map(image =>
           {
             if(image.poster_path !== null) {
-              return ("http://image.tmdb.org/t/p/w342" +  image.poster_path) 
+              return ("https://image.tmdb.org/t/p/w342" +  image.poster_path) 
             } else {
               return ("missing.jpg")
             }
