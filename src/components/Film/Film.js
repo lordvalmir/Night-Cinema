@@ -1,6 +1,7 @@
 import React from 'react';
+import '../Assets/myapp.js';
 import './Film.css';
-import './myapp.js';
+
 
 class Film extends React.Component {
   constructor(props) {
@@ -16,33 +17,23 @@ class Film extends React.Component {
     }
   }
 
-  componentDidMount() { 
-    // fetch popular films and save them into var
-    console.log(`https://api.themoviedb.org/3/movie/${this.state.film_id[0].match.params.id}?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15`);
-    fetch(`https://api.themoviedb.org/3/movie/${this.state.film_id[0].match.params.id}?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15`)
-      .then(res => res.json())
-      .then(json => {
-        this.setState ({ film_info: json });
-        this.setState ({ film_image: "https://image.tmdb.org/t/p/w342" + json.poster_path });
-        this.setState ({ film_title: json.title });
-        this.setState ({ film_description: json.overview });
-        this.setState ({ film_metadata: json });
-        this.setState ({ loaded: 1 });
-      })
-      .catch(console.log);
-
-	  	// Install built-in polyfills to patch browser incompatibilities.
-
+  async componentDidMount() { 
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${this.state.film_id[0].match.params.id}?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15`);
+    const json = await response.json();
+    this.setState ({ film_info: json });
+    this.setState ({ film_image: `https://image.tmdb.org/t/p/w342${json.poster_path}` });
+    this.setState ({ film_title: json.title });
+    this.setState ({ film_description: json.overview });
+    this.setState ({ film_metadata: json });
+    this.setState ({ loaded: 1 });
   }
 
 	render(){
 	  return(
 
 	  	<div className="box">
-	  		<script src="../../node_modules/mux.js/dist/mux.js"></script>
-		    <script src="../../dist/shaka-player.compiled.js"></script>
+		    <script src="../../dist/shaka-player.compiled.debug.js"></script>
 		    <script src="myapp.js"></script>
-
 	  	  <div className="stars">	</div>
         <div className="twinkling">	</div>
 		    <div className="container">
@@ -79,8 +70,11 @@ class Film extends React.Component {
 					    </div>
 
 					    <div className="picture">
-					    	<script src="myapp.js"></script>
-					    	<video id="video" width="640" poster="//shaka-player-demo.appspot.com/assets/poster.jpg" controls autoPlay></video>	
+						    <video id="video"
+						           width="640"
+						           poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
+						           controls autoPlay>
+						    </video>
 						    {
 						    	this.state.loaded 
 						    	? 

@@ -35,6 +35,11 @@ a:hover {
   cursor: pointer;
 }
 
+.asd a{
+    text-decoration: none;
+    color: white;
+}
+
 .films {
 	min-width: 100%;
   grid-column-start: 2;
@@ -46,6 +51,15 @@ a:hover {
 
 .film-title {
   margin: 10px;
+}
+
+.asd{
+    text-align: left;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  z-index: 2;
 }
 
 .film {
@@ -101,4 +115,3 @@ img {
   -webkit-animation:move-twink-back 200s linear infinite;
   animation:move-twink-back 200s linear infinite;
 }
-/*////////////////   Bacgraund   //////////////// */
