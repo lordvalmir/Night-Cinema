@@ -2,37 +2,44 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Logo from '../Assets/missing.jpg';
 
-const createfilm = (props, images) => {
+const createfilm = (props, images, film) => {
   return (
-    <ul>
-      {
-        props.images.map((value, index) => {
-          console.log(props.informations.results[index].id);
-          if(value !== "missing.jpg") {
-            return <Link to={`/Film/${props.informations.results[index].id}` }>
-                     <img className="img-contend" 
-                         src={value} 
-                         key={props.informations.results[index].id} 
-                         alt={props.informations.results[index].title} 
-                         title={props.informations.results[index].title} 
-                         height="120" 
-                         width="100px"
+    <ul>  
+    {
+      props.images.map((value, index) => {
+        if(value){
+          if(index < 8) {
+            if(value !== "missing.jpg") {
+              return <Link key={props.informations.results[index].id} to={`/${props.film}/${props.informations.results[index].id}` }>
+                     <img  className="img-contend" 
+                           src={value} 
+                           key={props.informations.results[index].id} 
+                           alt={props.informations.results[index].title} 
+                           title={props.informations.results[index].title} 
+                           height="120" 
+                           width="100px"
+                      />
+                      </Link>
+            } else {
+              return <Link key={props.informations.results[index].id} to={`/${props.film}/${props.informations.results[index].id}`}>
+                     <img  className="img-contend" 
+                           src={Logo} 
+                           key={props.informations.results[index].id} 
+                           alt={props.informations.results[index].title} 
+                           title={props.informations.results[index].title} 
+                           height="120" 
+                           width="100px"
                      />
-                   </Link>
+                     </Link>
+            }
           } else {
-            return <Link to={`/Film/${props.informations.results[index].id}`}>
-                     <img className="img-contend" 
-                        src={Logo} 
-                        key={props.informations.results[index].id} 
-                        alt={props.informations.results[index].title} 
-                        title={props.informations.results[index].title} 
-                        height="120" 
-                        width="100px"
-                     />
-                    </Link>
+            return null
           }
-        })
-      }
+        } else {
+          return null
+        }
+      })
+    }
     </ul>
   )
 }
@@ -48,7 +55,7 @@ class FilmArray extends React.PureComponent {
 
   render(){
     return ( 
-      <div>
+      <div className="film-border">
         {createfilm(this.state.movies)}
       </div>
     )

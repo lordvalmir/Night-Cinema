@@ -16,14 +16,20 @@ class Home extends React.Component {
 
   async componentDidMount() { 
     // fetch popular films and save them into var
+    
     const response1 = await fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc/550?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15');
     const json1 = await response1.json();
     this.setState ({ popular_movies: json1 })
+
     this.setState ({ popular_movies_image: this.state.popular_movies.results.map(image => {
-        if(image.poster_path !== null) {
-          return (`https://image.tmdb.org/t/p/w342${image.poster_path}`) 
+        if(image !== null){
+          if(image.poster_path !== null) {
+            return (`https://image.tmdb.org/t/p/w342${image.poster_path}`) 
+          } else {
+            return ("missing.jpg")
+          }
         } else {
-          return ("missing.jpg")
+          return null
         }
       })
     })
@@ -78,35 +84,47 @@ class Home extends React.Component {
     const { popular_movies_loaded, popular_series_loaded, family_loaded, documentary_loaded} = this.state;
 
     return(
-      
       <div className="Container">
         <div className="stars"></div>
         <div className="twinkling"></div>
         <Navigation/>
+        <div className="Title">
+          <div className="wrap">
+            <h1>Night Cinema</h1>
+          </div>
+        </div>
         <div className="films">
-          <div className="film-title">
-            <h2> Popular movies </h2>
+          <div className="wrap">
+            <div className="film-title">
+              <h2> Popular movies </h2>
+            </div>
+            <div className="film">
+              { popular_movies_loaded ? <FilmArray informations={popular_movies} images={popular_movies_image} film={'Film'}/> : null }
+            </div>
           </div>
-          <div className="film">
-            { popular_movies_loaded ? <FilmArray informations={popular_movies} images={popular_movies_image}/> : null }
-          </div>
+          <div className="wrap">
             <div className="film-title">
               <h2> Popular series </h2>
             </div>
-          <div className="film">
-            { popular_series_loaded ? <FilmArray informations={popular_series} images={popular_series_image}/> : null }
+            <div className="film">
+              { popular_series_loaded ? <FilmArray informations={popular_series} images={popular_series_image} film={'Series'}/> : null }
+            </div>
           </div>
-          <div className="film-title">
-            <h2> Family </h2>
+          <div className="wrap">
+            <div className="film-title">
+              <h2> Family </h2>
+            </div>
+            <div className="film">
+              { family_loaded ? <FilmArray informations={family} images={family_image} film={'Film'}/> : null }
+            </div>
           </div>
-          <div className="film">
-            { family_loaded ? <FilmArray informations={family} images={family_image}/> : null }
-          </div>
-          <div className="film-title">
-            <h2> Documentary </h2>
-          </div>
-          <div className="film">
-            { documentary_loaded ? <FilmArray informations={documentary} images={documentary_image}/> : null }
+          <div className="wrap">
+            <div className="film-title">
+              <h2> Documentary </h2>
+            </div>
+            <div className="film">
+              { documentary_loaded ? <FilmArray informations={documentary} images={documentary_image} film={'Film'}/> : null }
+            </div>
           </div>
         </div>
       </div>

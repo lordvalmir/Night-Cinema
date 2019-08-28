@@ -1,17 +1,17 @@
 import React from 'react';
-import './Film.css';
+import './Series.css';
 import Logo from '../Assets/missing.jpg';
 
-class Film extends React.Component {
+class Series extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      film_id: [props], 
-      film_info: [],
-      film_image: '',
-      film_title: '',
-      film_description: '',
-      film_metadata: '',
+    this.state = { 
+      series_id: [props], 
+      series_info: [],
+      series_image: '',
+      series_title: '',
+      series_description: '',
+      series_metadata: '',
       loaded: 0,
       showComponent: false,
     }
@@ -19,17 +19,18 @@ class Film extends React.Component {
   }
 
   async componentDidMount() { 
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${this.state.film_id[0].match.params.id}?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15`);
+  	console.log(this.state.series_id[0].match.params.id)
+    const response = await fetch(`https://api.themoviedb.org/3/tv/${this.state.series_id[0].match.params.id}?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15`);
     const json = await response.json();
-    this.setState ({ film_info: json });
+    this.setState ({ series_info: json });
     if(`${json.poster_path}` !== "null") {
-    	this.setState ({ film_image: `https://image.tmdb.org/t/p/w342${json.poster_path}` });
+    	this.setState ({ series_image: `https://image.tmdb.org/t/p/w342${json.poster_path}` });
     } else {
-    	this.setState ({ film_image: Logo });
+    	this.setState ({ series_image: Logo });
     }
-    this.setState ({ film_title: json.title });
-    this.setState ({ film_description: json.overview });
-    this.setState ({ film_metadata: json });
+    this.setState ({ series_title: json.title });
+    this.setState ({ series_description: json.overview });
+    this.setState ({ series_metadata: json });
     this.setState ({ loaded: 1 });
   }
 
@@ -62,7 +63,7 @@ class Film extends React.Component {
 							    {
 							    	this.state.loaded 
 							    	? 
-							    	<h1>{this.state.film_title}</h1>
+							    	<h1>{this.state.series_title}</h1>
 							    	: 
 							    	null
 									}
@@ -72,7 +73,7 @@ class Film extends React.Component {
 							    {
 							    	this.state.loaded 
 							    	? 
-							    	<p>{this.state.film_description}</p>
+							    	<p>{this.state.series_description}</p>
 							    	: 
 							    	null
 									}
@@ -95,7 +96,7 @@ class Film extends React.Component {
 								  	{
 									   	this.state.loaded 
 									    ? 
-									    <img src={this.state.film_image} alt={this.state.film_info.title} title={this.state.film_info.title} /> 
+									    <img src={this.state.series_image} alt={this.state.series_info.title} title={this.state.series_info.title} /> 
 									    : 
 									    null
 									  } 
@@ -123,4 +124,4 @@ class Film extends React.Component {
 	}
 }
 
-export default Film;
+export default Series;

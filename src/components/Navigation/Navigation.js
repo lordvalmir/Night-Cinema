@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 
 const Navigation = () => {
 	return (
-		<div className="asd">
-			<nav>
-				<Link to="/"><h1>Night Cinema</h1></Link>
-				<Link to="/Search"><h1>Search</h1></Link>
-			</nav>
+		<div className="navigation">
+			<Link className="title" to="/">       <h2>Menu</h2></Link>
+			<Link className="nav-search" to="/Search"><h2>Search</h2></Link>
 		</div>
 	)
 }

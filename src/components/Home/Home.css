@@ -1,84 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 .Container {
   display: grid;
-  grid-template-columns: 40px auto 40px;
-  grid-template-rows: 40px 60px auto 40px;
+  grid-template-columns: 40px auto auto 40px;
+  grid-template-rows: 50px 60px auto 40px;
   color: white;
 }
-
 .Title {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  z-index: 2;
+}
+.Title .wrap{
+  max-width: 1200px;
   text-align: left;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  z-index: 2;
 }
-
-.Search{
-  text-align: right;
-  align-content: flex-end;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  z-index: 2;
+.Title.wrap h1{
+  text-align: left;
+  display: block;
   width: auto;
+  margin: auto;
 }
 
-.Search a {
+.navigation{
+  display: flex;
+  justify-content: center;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  z-index: 2;
+}
+.navigation a{
   text-decoration: none;
   color: white;
 }
-
-a:hover {
-  color: yellow;
+.navigation a:hover {
+  color: red;
   cursor: pointer;
 }
-
-.asd a{
-    text-decoration: none;
-    color: white;
+a.title {
+  height: auto;
+  width: auto;
 }
-
+a.nav-search{
+  margin:10px;
+  position: relative;
+  text-align: right;
+  align-content: right;
+  left: 50px;
+}
 .films {
 	min-width: 100%;
   grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-end: 4;
   grid-row-start: 3;
   grid-row-end: 4;
   z-index: 2;
 }
-
+.wrap{
+  max-width: 1200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 .film-title {
-  margin: 10px;
+  width: max-content;
+  display: flex;
+  margin: 10px; 
+  margin-top: 30px;
 }
-
-.asd{
-    text-align: left;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  z-index: 2;
-}
-
 .film {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px;
-  border: solid;
-  border-color: gray;
+  border: 3px solid gray;
   border-radius:50px;
+  height: 170px;
+  overflow-y: hidden;
 }
 
-img {
-	margin: 20px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
+img{
+  margin: 20px;
 }
 @keyframes move-twink-back {
     from {background-position:0 0;}
@@ -98,7 +106,7 @@ img {
 }
 .stars, .twinkling {
   grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 4;
 }
