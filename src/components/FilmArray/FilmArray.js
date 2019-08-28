@@ -16,7 +16,7 @@ const createfilm = (props, images, film) => {
                            key={props.informations.results[index].id} 
                            alt={props.informations.results[index].title} 
                            title={props.informations.results[index].title} 
-                           height="120" 
+                           height="120px" 
                            width="100px"
                       />
                       </Link>
@@ -27,7 +27,7 @@ const createfilm = (props, images, film) => {
                            key={props.informations.results[index].id} 
                            alt={props.informations.results[index].title} 
                            title={props.informations.results[index].title} 
-                           height="120" 
+                           height="120px" 
                            width="100px"
                      />
                      </Link>

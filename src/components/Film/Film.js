@@ -95,7 +95,7 @@ class Film extends React.Component {
 								  	{
 									   	this.state.loaded 
 									    ? 
-									    <img src={this.state.film_image} alt={this.state.film_info.title} title={this.state.film_info.title} /> 
+									    <img src={this.state.film_image} alt={this.state.film_info.title} title={this.state.film_info.title} height="400px"/> 
 									    : 
 									    null
 									  } 
