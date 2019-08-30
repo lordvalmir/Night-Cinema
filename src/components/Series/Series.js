@@ -1,6 +1,7 @@
 import React from 'react';
 import './Series.css';
 import Logo from '../Assets/missing.jpg';
+import Navigation from '../Navigation/Navigation';
 
 class Series extends React.Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class Series extends React.Component {
 		    <script src="dist/shaka-player.compiled.js"></script>
 		    <script src="myapp.js"></script>
 		    <div className="container">
+		   	 	<Navigation/>
 			    <div className="body">
 			    	<div className="body2">
 					    <div className="info">

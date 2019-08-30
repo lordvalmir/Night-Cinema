@@ -8,7 +8,7 @@
 .container {
   display: grid;
   grid-template-columns: 40px auto 40px;
-  grid-template-rows: 80px auto 80px;
+  grid-template-rows: 40px auto 80px;
   color: white;
 }
 
@@ -49,6 +49,10 @@
   border-radius: 30px;
 }
 
+.navigation {
+  text-align: center;
+}
+
 .info button {
   display: block;
   margin: auto;
@@ -56,6 +60,8 @@
 
 .description, .metadata {
   margin: 10px;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .description p {

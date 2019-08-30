@@ -1,6 +1,7 @@
 import React from 'react';
-import './Film.css';
 import Logo from '../Assets/missing.jpg';
+import Navigation from '../Navigation/Navigation';
+import shaka from 'shaka-player';
 
 class Film extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class Film extends React.Component {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${this.state.film_id[0].match.params.id}?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15`);
     const json = await response.json();
     this.setState ({ film_info: json });
+    console.log(this.state.film_info);
     if(`${json.poster_path}` !== "null") {
     	this.setState ({ film_image: `https://image.tmdb.org/t/p/w342${json.poster_path}` });
     } else {
@@ -31,13 +33,25 @@ class Film extends React.Component {
     this.setState ({ film_description: json.overview });
     this.setState ({ film_metadata: json });
     this.setState ({ loaded: 1 });
+
+    shaka.polyfill.installAll();
   }
+
+	initPlayer(){
+		var manifestUri = '//storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
+		var player = new shaka.Player(this.refs.video);
+		player.addEventListener('error', this.onErrorEvent);
+		player.load(manifestUri).then(function() {
+			console.log('The video has now been loaded!');
+		}).catch(this.onError); 
+	}
 
   handleClick() {
   	if(this.state.showComponent === false){
 	    this.setState({
 	      showComponent: true,
 	    });
+
 	   } else {
 	    this.setState({
 	      showComponent: false,
@@ -52,9 +66,8 @@ class Film extends React.Component {
 	  	<div className="box">
 	  	  <div className="stars">	</div>
         <div className="twinkling">	</div>
-		    <script src="dist/shaka-player.compiled.js"></script>
-		    <script src="myapp.js"></script>
 		    <div className="container">
+		    	<Navigation/>
 			    <div className="body">
 			    	<div className="body2">
 					    <div className="info">
@@ -67,20 +80,31 @@ class Film extends React.Component {
 							    	null
 									}
 						    </div>
-					    	<div className="description">
-					    		<h2>Description</h2>
-							    {
-							    	this.state.loaded 
-							    	? 
-							    	<p>{this.state.film_description}</p>
-							    	: 
-							    	null
-									}
-									<hr/>
-					    	</div>
-					    	<div className="metadata">
-					    		<h2>Metadata</h2>
-					    	</div>
+						    {
+						    	this.state.loaded 
+						    	? 
+						    	<div className="description">
+						    		<h2>Description</h2>
+						    		<p>{this.state.film_description}</p>
+						    	</div>
+						    	: 
+						    	null
+								}
+								<hr/>
+								{
+						    	this.state.loaded 
+						    	? 
+						    	<div className="metadata">
+						    		<h2>Metadata</h2>
+						    		{
+						    		this.state.film_info.genres.map((value, index) => {
+	        						return <p key={value.name}>{value.name}</p>
+	      						})
+						    		}
+						    	</div>
+						    	: 
+						    	null
+								}
 					      <button className="watch" onClick={this.handleClick}>
 					        Watch Movie
 					      </button>
@@ -105,12 +129,13 @@ class Film extends React.Component {
 					      	this.state.showComponent 
 					        ?
 					        <div>
-										<video id="video"
-										       width="640"
-										       poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
-										       controls autoPlay>
-										</video>
-									</div>
+							    	<video ref="video"
+							         	width="640"
+							     			poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
+							         	controls autoPlay>
+		       					</video>
+		       					{this.initPlayer()}
+		       				</div>
 					        :
 					        null
 					      }
