@@ -20,7 +20,6 @@ class Series extends React.Component {
   }
 
   async componentDidMount() { 
-  	console.log(this.state.series_id[0].match.params.id)
     const response = await fetch(`https://api.themoviedb.org/3/tv/${this.state.series_id[0].match.params.id}?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15`);
     const json = await response.json();
     this.setState ({ series_info: json });
@@ -29,9 +28,9 @@ class Series extends React.Component {
     } else {
     	this.setState ({ series_image: Logo });
     }
-    this.setState ({ series_title: json.title });
+    this.setState ({ series_title: json.name });
     this.setState ({ series_description: json.overview });
-    this.setState ({ series_metadata: json });
+    this.setState ({ series_metadata: json.genres });
     this.setState ({ loaded: 1 });
   }
 
@@ -54,45 +53,49 @@ class Series extends React.Component {
 	  	<div className="box">
 	  	  <div className="stars">	</div>
         <div className="twinkling">	</div>
-		    <script src="dist/shaka-player.compiled.js"></script>
-		    <script src="myapp.js"></script>
 		    <div className="container">
 		   	 	<Navigation/>
 			    <div className="body">
 			    	<div className="body2">
-					    <div className="info">
-						    <div className="title">
-							    {
-							    	this.state.loaded 
-							    	? 
-							    	<h1>{this.state.series_title}</h1>
-							    	: 
-							    	null
-									}
-						    </div>
-					    	<div className="description">
-					    		<h2>Description</h2>
-							    {
-							    	this.state.loaded 
-							    	? 
-							    	<p>{this.state.series_description}</p>
-							    	: 
-							    	null
-									}
-									<hr/>
-					    	</div>
-					    	<div className="metadata">
-					    		<h2>Metadata</h2>
-					    	</div>
-					      <button className="watch" onClick={this.handleClick}>
-					        Watch Movie
-					      </button>
-					    </div>
+					    {
+					    	this.state.loaded 
+					    	? 
+					    	<div className="info">
+						    	<div className="title">
+						    		<h1>{this.state.series_title}</h1>
+						    	</div>
+						    	<div className="description">
+				    		  	<h2>Description</h2>
+						    		<p>{this.state.series_description}</p>
+				    			</div>
+				    			<hr/>
+				    			<div className="metadata">
+				    			  <h2>Metadata</h2>
+					    			  {
+								    		this.state.series_metadata.map((value, index) => {
+			        						return <p key={value.name}>{value.name}</p>
+			      						})
+							    		}
+				    			</div>
+				      		<button className="watch" onClick={this.handleClick}>
+				        		Watch Movie
+				      		</button>
+			      		</div>
+			    			:
+			    			null
+			    		}
 					    <div className="picture">
 						    {
 						    	this.state.showComponent 
 						    	?
-						    	null
+					        <div>
+										<video id="video"
+										       width="640"
+										       poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
+										       controls autoPlay>
+										</video>
+										{this.initPlayer()}
+									</div>
 						    	:
 							  	<div> 
 								  	{
@@ -103,20 +106,7 @@ class Series extends React.Component {
 									    null
 									  } 
 								  </div>
-									}
-					      {
-					      	this.state.showComponent 
-					        ?
-					        <div>
-										<video id="video"
-										       width="640"
-										       poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
-										       controls autoPlay>
-										</video>
-									</div>
-					        :
-					        null
-					      }
+								}
 					    </div>
 			    	</div>
 			    </div>

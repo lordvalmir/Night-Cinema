@@ -8,11 +8,11 @@ const createfilm = (props, images, film) => {
     {
       props.images.map((value, index) => {
         if(value){
-          if(index < 8) {
+          if(index <= 8) {
             if(value !== "missing.jpg") {
               return <Link key={props.informations.results[index].id} to={`/${props.film}/${props.informations.results[index].id}` }>
                      <img  className="img-contend" 
-                           src={value} 
+                           src={props.images[index]} 
                            key={props.informations.results[index].id} 
                            alt={props.informations.results[index].title} 
                            title={props.informations.results[index].title} 
