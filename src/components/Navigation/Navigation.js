@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 const Navigation = () => {
 	return (
 		<div className="navigation">
-			<a href="https://night-cinema-24.herokuapp.com/" className="title">      <h2>Menu</h2>  </a>
-			<a href="https://night-cinema-24.herokuapp.com/Search" className="nav-search"><h2>Search</h2></a>
+			<Link className="title"      to="/">      <h2>Menu</h2>  </Link>
+			<Link className="nav-search" to="/Search"><h2>Search</h2></Link>
 		</div>
 	)
 }
