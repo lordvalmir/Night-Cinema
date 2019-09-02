@@ -20,7 +20,6 @@ class Home extends React.Component {
     const response1 = await fetch('https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc/550?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15');
     const json1 = await response1.json();
     this.setState ({ popular_movies: json1 })
-    console.log(this.state.popular_movies)
     this.setState ({ popular_movies_image: this.state.popular_movies.results.map(image => {
         if(image !== null){
           if(image.poster_path !== null) {

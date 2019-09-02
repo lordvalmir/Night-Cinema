@@ -11,27 +11,29 @@ class Film extends React.Component {
       film_info: [],
       film_image: '',
       film_title: '',
+      film_bg: '',
       film_description: '',
       film_metadata: '',
-      loaded: 0,
+      loaded: false,
       showComponent: false,
     }
     this.handleClick = this.handleClick.bind(this);
   }
 
   async componentDidMount() { 
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${this.state.film_id[0].match.params.id}?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15`);
-    const json = await response.json();
+	  const response = await fetch(`https://api.themoviedb.org/3/movie/${this.state.film_id[0].match.params.id}?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15`);
+	  const json = await response.json();
     this.setState ({ film_info: json });
     if(`${json.poster_path}` !== "null") {
     	this.setState ({ film_image: `https://image.tmdb.org/t/p/w342${json.poster_path}` });
     } else {
     	this.setState ({ film_image: Logo });
     }
+    this.setState ({ film_bg: json.backdrop_path });
     this.setState ({ film_title: json.title });
     this.setState ({ film_description: json.overview });
     this.setState ({ film_metadata: json });
-    this.setState ({ loaded: 1 });
+    this.setState ({ loaded: true });
     shaka.polyfill.installAll();
   }
 
@@ -101,7 +103,7 @@ class Film extends React.Component {
 					        <div>
 							    	<video id="film_video"
 							         	width="640"
-							     			poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
+							     			poster={`https://image.tmdb.org/t/p/w342${this.state.film_bg}`}
 							         	controls autoPlay>
 		       					</video>
 		       					{this.initPlayer()}

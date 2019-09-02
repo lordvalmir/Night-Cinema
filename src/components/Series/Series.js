@@ -2,6 +2,7 @@ import React from 'react';
 import './Series.css';
 import Logo from '../Assets/missing.jpg';
 import Navigation from '../Navigation/Navigation';
+import shaka from 'shaka-player';
 
 class Series extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Series extends React.Component {
       series_info: [],
       series_image: '',
       series_title: '',
+      series_bg: '',
       series_description: '',
       series_metadata: '',
       loaded: 0,
@@ -28,11 +30,23 @@ class Series extends React.Component {
     } else {
     	this.setState ({ series_image: Logo });
     }
+    this.setState ({ series_bg: json.backdrop_path });
     this.setState ({ series_title: json.name });
     this.setState ({ series_description: json.overview });
     this.setState ({ series_metadata: json.genres });
     this.setState ({ loaded: 1 });
   }
+
+	initPlayer(){
+		var manifestUri = '//storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
+		const video = document.getElementById('film_video');
+		var player = new shaka.Player(video);
+		window.player = player;
+		player.addEventListener('error', this.onErrorEvent);
+		player.load(manifestUri).then(function() {
+			console.log('The video has now been loaded!');
+		}).catch(this.onError); 
+	}
 
   handleClick() {
   	if(this.state.showComponent === false){
@@ -91,7 +105,7 @@ class Series extends React.Component {
 					        <div>
 										<video id="video"
 										       width="640"
-										       poster="//shaka-player-demo.appspot.com/assets/poster.jpg"
+							     				 poster={`https://image.tmdb.org/t/p/w342${this.state.series_bg}`}
 										       controls autoPlay>
 										</video>
 										{this.initPlayer()}
