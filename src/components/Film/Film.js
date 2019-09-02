@@ -35,6 +35,7 @@ class Film extends React.Component {
     this.setState ({ film_metadata: json });
     this.setState ({ loaded: true });
     shaka.polyfill.installAll();
+    this.initPlayer()
   }
 
 	initPlayer(){
@@ -97,28 +98,11 @@ class Film extends React.Component {
 					    	null
 							}
 					    <div className="picture">
-						    {
-						    	this.state.showComponent 
-						    	?
-					        <div>
-							    	<video id="film_video"
-							         	width="640"
-							     			poster={`https://image.tmdb.org/t/p/w342${this.state.film_bg}`}
-							         	controls autoPlay>
-		       					</video>
-		       					{this.initPlayer()}
-		       				</div>
-						    	:
-							  	<div> 
-								  	{
-									   	this.state.loaded 
-									    ? 
-									    <img src={this.state.film_image} alt={this.state.film_info.title} title={this.state.film_info.title} height="400px"/> 
-									    : 
-									    null
-									  } 
-								  </div>
-								}
+								<video id="film_video"
+								       width="640"
+								     	 poster={`https://image.tmdb.org/t/p/w342${this.state.film_bg}`}
+								       controls autoPlay>
+			       		</video>
 					    </div>
 			    	</div>
 			    </div>
