@@ -35,6 +35,8 @@ class Series extends React.Component {
     this.setState ({ series_description: json.overview });
     this.setState ({ series_metadata: json.genres });
     this.setState ({ loaded: 1 });
+    shaka.polyfill.installAll();
+    this.initPlayer()
   }
 
 	initPlayer(){
@@ -99,28 +101,11 @@ class Series extends React.Component {
 			    			null
 			    		}
 					    <div className="picture">
-						    {
-						    	this.state.showComponent 
-						    	?
-					        <div>
-										<video id="video"
-										       width="640"
-							     				 poster={`https://image.tmdb.org/t/p/w342${this.state.series_bg}`}
-										       controls autoPlay>
-										</video>
-										{this.initPlayer()}
-									</div>
-						    	:
-							  	<div> 
-								  	{
-									   	this.state.loaded 
-									    ? 
-									    <img src={this.state.series_image} alt={this.state.series_info.title} title={this.state.series_info.title} /> 
-									    : 
-									    null
-									  } 
-								  </div>
-								}
+								<video id="film_video"
+								       width="640"
+								     	 poster={`https://image.tmdb.org/t/p/w342${this.state.film_bg}`}
+								       controls autoPlay>
+			       		</video>
 					    </div>
 			    	</div>
 			    </div>
