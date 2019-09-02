@@ -104,7 +104,6 @@ class Film extends React.Component {
 							}
 					    <div className="picture">
 								<video id="film_video"
-								       width="640"
 								     	 poster={this.state.film_bg}
 								       controls autoPlay>
 			       		</video>

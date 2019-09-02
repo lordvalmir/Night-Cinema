@@ -15,6 +15,9 @@
   grid-row-end: 3;
   z-index: 2;
 }
+.picture video{
+  width: 100%;
+}
 .Title .wrap{
   max-width: 1200px;
   text-align: left;
