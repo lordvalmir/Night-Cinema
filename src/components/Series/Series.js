@@ -103,7 +103,7 @@ class Series extends React.Component {
 					    <div className="picture">
 								<video id="film_video"
 								       width="640"
-								     	 poster={`https://image.tmdb.org/t/p/w342${this.state.film_bg}`}
+								     	 poster={`https://image.tmdb.org/t/p/w342${this.state.series_bg}`}
 								       controls autoPlay>
 			       		</video>
 					    </div>
