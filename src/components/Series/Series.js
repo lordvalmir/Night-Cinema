@@ -30,7 +30,11 @@ class Series extends React.Component {
     } else {
     	this.setState ({ series_image: Logo });
     }
-    this.setState ({ series_bg: json.backdrop_path });
+    if(`${json.backdrop_path}` !== "null") {
+    	this.setState ({ series_bg: `https://image.tmdb.org/t/p/w342${json.backdrop_path}` });
+    } else {
+    	this.setState ({ series_bg: Logo });
+    }
     this.setState ({ series_title: json.name });
     this.setState ({ series_description: json.overview });
     this.setState ({ series_metadata: json.genres });
@@ -103,7 +107,7 @@ class Series extends React.Component {
 					    <div className="picture">
 								<video id="film_video"
 								       width="640"
-								     	 poster={`https://image.tmdb.org/t/p/w342${this.state.series_bg}`}
+								       poster={this.state.series_bg}
 								       controls autoPlay>
 			       		</video>
 					    </div>

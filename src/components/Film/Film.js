@@ -21,15 +21,20 @@ class Film extends React.Component {
   }
 
   async componentDidMount() { 
-	  const response = await fetch(`https://api.themoviedb.org/3/movie/${this.state.film_id[0].match.params.id}?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15`);
+	  const response = await fetch(`https://api.themoviedb.org/3/movie/${this.state.film_id[0].match.params.id}?api_key=526ca44fbbdbdd581bb4a6d9f1f87e15&append_to_response=videos`);
 	  const json = await response.json();
     this.setState ({ film_info: json });
+    console.log(json)
     if(`${json.poster_path}` !== "null") {
     	this.setState ({ film_image: `https://image.tmdb.org/t/p/w342${json.poster_path}` });
     } else {
     	this.setState ({ film_image: Logo });
     }
-    this.setState ({ film_bg: json.backdrop_path });
+    if(`${json.backdrop_path}` !== "null") {
+    	this.setState ({ film_bg: `https://image.tmdb.org/t/p/w342${json.backdrop_path}` });
+    } else {
+    	this.setState ({ film_bg: Logo });
+    }
     this.setState ({ film_title: json.title });
     this.setState ({ film_description: json.overview });
     this.setState ({ film_metadata: json });
@@ -100,7 +105,7 @@ class Film extends React.Component {
 					    <div className="picture">
 								<video id="film_video"
 								       width="640"
-								     	 poster={`https://image.tmdb.org/t/p/w342${this.state.film_bg}`}
+								     	 poster={this.state.film_bg}
 								       controls autoPlay>
 			       		</video>
 					    </div>
