@@ -74,7 +74,7 @@ class Film extends React.Component {
 			      						})
 							    		}
 						    	</div>
-						    	<Link className="title" to={{pathname: this.state.film_watch, type: 'Film'}}>
+						    	<Link className="title" to={{pathname: this.state.film_watch, type: 'Film', backgraund: this.state.film_bg}}>
 						    		<button className="watch">
 					        		Watch Movie
 					      		</button> 

@@ -75,7 +75,7 @@ class Series extends React.Component {
 			      						})
 							    		}
 				    			</div>
-						    	<Link className="title" to={{pathname: this.state.series_watch, type: 'Series'}}>
+						    	<Link className="title" to={{pathname: this.state.series_watch, type: 'Series', backgraund: this.state.series_bg}}>
 						    		<button className="watch">
 					        		Watch Movie
 					      		</button> 

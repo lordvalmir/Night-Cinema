@@ -9,6 +9,7 @@ class Watch extends React.Component {
 	  console.log(this.props.location.type)
     this.state = {
       id: `/${this.props.location.type}/${this.props.match.params.id}`,
+      backgraund: this.props.location.backgraund,
     }
 	}
 
@@ -38,6 +39,7 @@ class Watch extends React.Component {
 				</div>
 				<div id="film_video_div">
 					<video id="film_video"
+								 poster={this.state.backgraund} 
 					       controls autoPlay>
 		   		</video>
 	   		</div>
