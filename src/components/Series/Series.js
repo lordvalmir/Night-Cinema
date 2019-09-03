@@ -2,7 +2,7 @@ import React from 'react';
 import './Series.css';
 import Logo from '../Assets/missing.jpg';
 import Navigation from '../Navigation/Navigation';
-import shaka from 'shaka-player';
+import { Link } from "react-router-dom";
 
 class Series extends React.Component {
   constructor(props) {
@@ -14,11 +14,11 @@ class Series extends React.Component {
       series_title: '',
       series_bg: '',
       series_description: '',
+      series_watch: '',
       series_metadata: '',
       loaded: 0,
       showComponent: false,
     }
-    this.handleClick = this.handleClick.bind(this);
   }
 
   async componentDidMount() { 
@@ -35,37 +35,11 @@ class Series extends React.Component {
     } else {
     	this.setState ({ series_bg: Logo });
     }
+    this.setState ({ series_watch: `/Watch/${json.id}`});
     this.setState ({ series_title: json.name });
     this.setState ({ series_description: json.overview });
     this.setState ({ series_metadata: json.genres });
     this.setState ({ loaded: 1 });
-    shaka.polyfill.installAll();
-    this.initPlayer()
-  }
-
-	initPlayer(){
-		var manifestUri = '//storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
-		const video = document.getElementById('film_video');
-		var player = new shaka.Player(video);
-		window.player = player;
-		player.addEventListener('error', this.onErrorEvent);
-		player.load(manifestUri).then(function() {
-			console.log('The video has now been loaded!');
-		}).catch(this.onError); 
-	}
-
-  handleClick() {
-  	if(this.state.showComponent === false){
-	    this.setState({
-	      showComponent: true,
-	    });
-	   } else {
-	    this.setState({
-	      showComponent: false,
-	    });
-	   }
-
-
   }
 
 	render(){
@@ -97,19 +71,17 @@ class Series extends React.Component {
 			      						})
 							    		}
 				    			</div>
-				      		<button className="watch" onClick={this.handleClick}>
-				        		Watch Movie
-				      		</button>
+						    	<Link className="title" to={this.state.series_watch}>
+						    		<button className="watch">
+					        		Watch Movie
+					      		</button> 
+					      	</Link>
 			      		</div>
 			    			:
 			    			null
 			    		}
 					    <div className="picture">
-								<video id="film_video"
-								       width="640"
-								       poster={this.state.series_bg}
-								       controls autoPlay>
-			       		</video>
+								<img src={this.state.series_image} alt={this.state.series_info.title} title={this.state.series_info.title} /> 
 					    </div>
 			    	</div>
 			    </div>
