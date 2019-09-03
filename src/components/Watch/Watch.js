@@ -1,13 +1,14 @@
 import React from 'react';
-
+import { Link } from "react-router-dom";
 import shaka from 'shaka-player';
-
+import End from '../Assets/end.png';
 
 class Watch extends React.Component {
   constructor(props) {
 	  super(props);
+	  console.log(this.props.location.type)
     this.state = {
-      id: `/Film/${this.props.match.params.id}`
+      id: `/${this.props.location.type}/${this.props.match.params.id}`,
     }
 	}
 
@@ -30,9 +31,16 @@ class Watch extends React.Component {
 	render() {
 		return (
 			<div className="watch_film">
-				<video id="film_video"
-				       controls autoPlay>
-	   		</video>
+				<div>
+		    	<Link to={this.state.id}>
+		    		<img className="end" alt='' src={End}/>
+	      	</Link>
+				</div>
+				<div id="film_video_div">
+					<video id="film_video"
+					       controls autoPlay>
+		   		</video>
+	   		</div>
 			</div>
 		)
 	}

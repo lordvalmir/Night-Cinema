@@ -9,28 +9,54 @@ const createfilm = (props, images, film) => {
       props.images.map((value, index) => {
         if(value){
           if(index <= 8) {
-            if(value !== "missing.jpg") {
-              return <Link key={props.informations.results[index].id} to={`/${props.film}/${props.informations.results[index].id}` }>
-                     <img  className="img-contend" 
-                           src={props.images[index]} 
-                           key={props.informations.results[index].id} 
-                           alt={props.informations.results[index].title} 
-                           title={props.informations.results[index].title} 
-                           height="120px" 
-                           width="100px"
-                      />
-                      </Link>
+            if(props.film === 'Film'){
+              if(value !== "missing.jpg") {
+                return <Link key={props.informations.results[index].id} to={`/${props.film}/${props.informations.results[index].id}` }>
+                       <img  className="img-contend" 
+                             src={props.images[index]} 
+                             key={props.informations.results[index].id} 
+                             alt={props.informations.results[index].title} 
+                             title={props.informations.results[index].title} 
+                             height="120px" 
+                             width="100px"
+                        />
+                        </Link>
+              } else {
+                return <Link key={props.informations.results[index].id} to={`/${props.film}/${props.informations.results[index].id}`}>
+                       <img  className="img-contend" 
+                             src={Logo} 
+                             key={props.informations.results[index].id} 
+                             alt={props.informations.results[index].title} 
+                             title={props.informations.results[index].title} 
+                             height="120px" 
+                             width="100px"
+                       />
+                       </Link>
+              }
             } else {
-              return <Link key={props.informations.results[index].id} to={`/${props.film}/${props.informations.results[index].id}`}>
-                     <img  className="img-contend" 
-                           src={Logo} 
-                           key={props.informations.results[index].id} 
-                           alt={props.informations.results[index].title} 
-                           title={props.informations.results[index].title} 
-                           height="120px" 
-                           width="100px"
-                     />
-                     </Link>
+              if(value !== "missing.jpg") {
+                return <Link key={props.informations.results[index].id} to={`/${props.film}/${props.informations.results[index].id}` }>
+                       <img  className="img-contend" 
+                             src={props.images[index]} 
+                             key={props.informations.results[index].id} 
+                             alt={props.informations.results[index].name} 
+                             title={props.informations.results[index].name} 
+                             height="120px" 
+                             width="100px"
+                        />
+                        </Link>
+              } else {
+                return <Link key={props.informations.results[index].id} to={`/${props.film}/${props.informations.results[index].id}`}>
+                       <img  className="img-contend" 
+                             src={Logo} 
+                             key={props.informations.results[index].id} 
+                             alt={props.informations.results[index].name} 
+                             title={props.informations.results[index].name} 
+                             height="120px" 
+                             width="100px"
+                       />
+                       </Link>
+              }
             }
           } else {
             return null

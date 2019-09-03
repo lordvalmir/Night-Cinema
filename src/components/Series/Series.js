@@ -16,7 +16,7 @@ class Series extends React.Component {
       series_description: '',
       series_watch: '',
       series_metadata: '',
-      loaded: 0,
+      loaded: false,
       showComponent: false,
     }
   }
@@ -39,7 +39,11 @@ class Series extends React.Component {
     this.setState ({ series_title: json.name });
     this.setState ({ series_description: json.overview });
     this.setState ({ series_metadata: json.genres });
-    this.setState ({ loaded: 1 });
+    this.setState ({ loaded: true });
+  }
+
+  componentWillUnmount(){
+  	this.setState ({ loaded: false });
   }
 
 	render(){
@@ -71,7 +75,7 @@ class Series extends React.Component {
 			      						})
 							    		}
 				    			</div>
-						    	<Link className="title" to={this.state.series_watch}>
+						    	<Link className="title" to={{pathname: this.state.series_watch, type: 'Series'}}>
 						    		<button className="watch">
 					        		Watch Movie
 					      		</button> 
