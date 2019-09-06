@@ -1,76 +1,60 @@
-.Container2 {
-  display: grid;
-  grid-template-columns: 40px auto auto 40px;
-  grid-template-rows: 60px 100px 100px auto 40px;
-  color: white;
+.searchContainer{
+	display: grid;
+	grid-template-columns: 10% auto 10%;
+	grid-template-rows: 1fr 1fr 1fr 5fr;
+	color: white;
 }
-
 .search{
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
-  z-index: 2;
-  border: 1px solid;
-  width: 80%;
-  margin: auto;
-  max-width: 800px;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 3;
+	grid-row-end: 4;
+	z-index: 2;
 }
-
-.Title_search {
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  z-index: 2;
-    margin-top: 50px;
+.wrapSearch{
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
 }
-.Title_search .wrap{
-  max-width: 800px;
-  text-align: left;
-}
-
 .search-box {
-  width: 100%;
-  height: auto;
-  margin: auto;
-}
-.Search_results h2{
-  margin-bottom: 20px;
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
 }
 .search-box input{
-  width: 70%;
-  min-height: 30px;
-  margin: 10px;
-  margin-right: 20px;
-  float: left;
+	width: 70%;
+	min-height: 30px;
+	margin: 10px;
+	float: left;
 }
-
+.Search_results h2{
+	margin-bottom: 20px;
+}
+.Search_results img{
+	margin: 20px;
+	margin-left: 25px;
+}
 .search-button button{
-  width: 20%;
-  margin: 10px;
-  min-height: 35px;
-  float: right;
+	width: 20%;
+	margin: 10px;
+	min-height: 35px;
+	float: right;
 }
-
 .films2 {
-  min-width: 100%;
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 4;
-  grid-row-end: 5;
-  z-index: 2;
-}
-.film2{
-  margin-top: 100px;
-  margin-bottom: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 4;
+	grid-row-end: 5;
+	z-index: 2;
+	margin-top: 60px;
+	margin-bottom: 50px;
+	display: flex;
+	justify-content: center;
 }
 .film2 ul{
-  border: 3px solid gray;
-  border-radius:50px;
-  height: 170px;
-  overflow-y: hidden;
+	border: 3px solid gray;
+	border-radius: 50px;
+	padding-left: 0px;
+	height: 170px;
+	overflow-y: hidden;
 }

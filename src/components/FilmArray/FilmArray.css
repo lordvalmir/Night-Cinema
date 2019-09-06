@@ -1,0 +1,10 @@
+.film-border {
+	max-height: 170px;
+}
+.film-border ul{
+	height: 100%;
+}
+.film-border img{
+	margin: 10px;
+	margin-left: 25px;
+}

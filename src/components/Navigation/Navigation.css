@@ -1,0 +1,21 @@
+.navigation{
+	display: flex;
+	justify-content: center;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+	z-index: 2;
+}
+.navigation a{
+	text-decoration: none;
+	color: white;
+}
+.navigation a:hover {
+	color: red;
+	cursor: pointer;
+}
+.navigations{
+	width: 50%;
+	text-align: center;
+}

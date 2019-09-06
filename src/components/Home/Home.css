@@ -1,159 +1,90 @@
-* {
-    margin: 0;
-    padding: 0;
+.mainPageContainer {
+	display: grid;
+	grid-template-columns: 10% auto 10%;
+	grid-template-rows: 1fr 1fr 12fr 1fr;
+	color: white;
 }
-.Container {
-  display: grid;
-  grid-template-columns: 40px auto auto 40px;
-  grid-template-rows: 50px 60px auto 40px;
-  color: white;
+.title {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	z-index: 2;
 }
-.Title {
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  z-index: 2;
+.title h1 {
+	text-align: left;
 }
-.Title .wrap{
-  max-width: 1200px;
-  text-align: left;
+.wrap{
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
 }
-
-video {
-  position:fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%; 
-  max-height: 100%;
-  position:fixed;
-  z-index:-1;
-  background-color: black
+.films {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 3;
+	grid-row-end: 4;
+	z-index: 2;
+}
+.film-title {
+	width: auto;
+	margin: 10px; 
+}
+.film {
+	display: flex;
+	border: 3px solid gray;
+	border-radius: 50px;
+	overflow-y: hidden;
+	overflow-x: auto;
 }
 
 .end {
-  position:fixed;
-  left:0;top:0;
-  width:50px;
-  height:50px;
-  z-index:2;
-  cursor: pointer;
+	position:fixed;
+	left:0;top:0;
+	width:50px;
+	height:50px;
+	z-index:2;
+	cursor: pointer;
 }
-
-.Title .wrap h1{
-  text-align: left;
-  display: block;
-  width: auto;
-  margin: auto;
-}
-
 .metadata p {
-  margin: 10px;
+	margin: 10px;
 }
 
-.navigation{
-  display: flex;
-  justify-content: center;
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  z-index: 2;
-}
-.navigation a{
-  text-decoration: none;
-  color: white;
-}
-.navigation a:hover {
-  color: red;
-  cursor: pointer;
-}
-a.title {
-  height: auto;
-  width: auto;
-}
-a.nav-search{
-  margin:10px;
-  position: relative;
-  text-align: right;
-  align-content: right;
-  left: 50px;
-}
-.films {
-	min-width: 100%;
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
-  z-index: 2;
-}
-.film-border {
-  max-height: 170px;
-}
 
-a {
-      text-decoration: none;
-}
 
-.wrap{
-  max-width: 1200px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-.film-title {
-  width: max-content;
-  display: flex;
-  margin: 10px; 
-  margin-top: 30px;
-}
-.film {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid gray;
-  border-radius:50px;
-  height: 170px;
-  overflow-y: hidden;
-  overflow-x: auto;
-}
-
-img{
-  margin: 20px;
-}
 @keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
+		from {background-position:0 0;}
+		to {background-position:-10000px 5000px;}
 }
 @-webkit-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
+		from {background-position:0 0;}
+		to {background-position:-10000px 5000px;}
 }
 @-moz-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
+		from {background-position:0 0;}
+		to {background-position:-10000px 5000px;}
 }
 @-ms-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
+		from {background-position:0 0;}
+		to {background-position:-10000px 5000px;}
 }
 .stars, .twinkling {
-  grid-column-start: 1;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 4;
+	position: fixed;
+	min-height: 100%;
+	min-width: 100%;
+	top: 0;
+	left: 0;
 }
 .stars {
-  background:#000 url(https://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
-  z-index:0;
+	background:#000 url(https://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+	z-index:0;
 }
 .twinkling{
-  background:transparent url(https://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
-  z-index:1;
-  -moz-animation:move-twink-back 200s linear infinite;
-  -ms-animation:move-twink-back 200s linear infinite;
-  -o-animation:move-twink-back 200s linear infinite;
-  -webkit-animation:move-twink-back 200s linear infinite;
-  animation:move-twink-back 200s linear infinite;
+	background:transparent url(https://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+	z-index:1;
+	-moz-animation:move-twink-back 200s linear infinite;
+	-ms-animation:move-twink-back 200s linear infinite;
+	-o-animation:move-twink-back 200s linear infinite;
+	-webkit-animation:move-twink-back 200s linear infinite;
+	animation:move-twink-back 200s linear infinite;
 }

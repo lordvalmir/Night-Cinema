@@ -1,22 +1,22 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import shaka from 'shaka-player';
 import End from '../Assets/end.png';
+import './Watch.css';
 
 class Watch extends React.Component {
-  constructor(props) {
-	  super(props);
-	  console.log(this.props.location.type)
-    this.state = {
-      id: `/${this.props.location.type}/${this.props.match.params.id}`,
-      backgraund: this.props.location.backgraund,
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			id: `/${this.props.location.type}/${this.props.match.params.id}`,
+			backgraund: this.props.location.backgraund,
+		}
 	}
 
-  componentDidMount() { 
-    shaka.polyfill.installAll();
-    this.initPlayer()
-  }
+	componentDidMount() { 
+		shaka.polyfill.installAll();
+		this.initPlayer()
+	}
 
 	initPlayer(){
 		var manifestUri = '//storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
@@ -31,18 +31,18 @@ class Watch extends React.Component {
 
 	render() {
 		return (
-			<div className="watch_film">
+			<div className='watch_film'>
 				<div>
-		    	<Link to={this.state.id}>
-		    		<img className="end" alt='' src={End}/>
-	      	</Link>
+					<Link to={this.state.id}>
+						<img className='end' alt='' src={End}/>
+					</Link>
 				</div>
-				<div id="film_video_div">
-					<video id="film_video"
+				<div id='film_video_div'>
+					<video id='film_video'
 								 poster={this.state.backgraund} 
-					       controls autoPlay>
-		   		</video>
-	   		</div>
+								 controls autoPlay>
+			 		</video>
+		 		</div>
 			</div>
 		)
 	}

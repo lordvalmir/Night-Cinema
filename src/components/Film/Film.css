@@ -1,0 +1,6 @@
+.container{
+	display: grid;
+	grid-template-columns: 10% auto 10%;
+	grid-template-rows: 1fr 8fr 1fr;
+	color: white;
+}
