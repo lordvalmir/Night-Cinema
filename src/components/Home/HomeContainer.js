@@ -1,8 +1,5 @@
 import React from "react";
 import Home from "./Home";
-const baseUrl = "https://api.themoviedb.org/3/discover/";
-const api_key = "526ca44fbbdbdd581bb4a6d9f1f87e15";
-const popularity = "sort_by=popularity";
 
 const HomeContainer = Component =>
   class extends React.Component {
